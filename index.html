@@ -1,0 +1,1609 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Westmore — Residential Atelier</title>
+  <style>
+/* =========================================================================
+   Westmore — colors_and_type.css
+   The complete visual foundation: type scale, color tokens, semantic vars.
+   Import this file at the top of any Westmore artifact.
+   ========================================================================= */
+
+/* -----------------------------------------------------------------------
+   Webfonts — Google Fonts substitutes
+   Display: Cormorant Garamond  (substituted for a transitional serif —
+   replace with the licensed display face once we secure one)
+   Body:    Manrope             (substituted for a humanist sans —
+   replace with the licensed text face)
+   ----------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* ==========================================================
+     COLOR — raw palette
+     Warm, residential, restrained. Inspired by limestone,
+     linen, ink on cream paper, and aged brass.
+     ========================================================== */
+
+  /* Neutrals — the system runs on these */
+  --c-ink:        #1B1F26;  /* near-black, warm. Primary text. */
+  --c-graphite:   #3A3F47;  /* secondary text */
+  --c-stone:      #6E6A62;  /* tertiary text, muted */
+  --c-silt:       #A39E92;  /* hairlines, captions */
+  --c-sand:       #D9D2C2;  /* dividers, soft fills */
+  --c-linen:      #EFEAE0;  /* surface — cards, hover */
+  --c-paper:      #F6F2E9;  /* canvas — page background */
+  --c-bone:       #FBF8F2;  /* lightest surface */
+  --c-white:      #FFFFFF;
+
+  /* Accent — brass, used like jewelry: small, intentional */
+  --c-brass-900:  #6E5530;
+  --c-brass-700:  #8A6D3F;
+  --c-brass:      #A88B5C;  /* the accent */
+  --c-brass-300:  #C8B58A;
+  --c-brass-100:  #ECE2CC;
+
+  /* Warm — clay, for the rare accent and select photography tones */
+  --c-clay:       #B8765A;
+  --c-clay-100:   #E9D6CA;
+
+  /* Deep — ink-on-paper, used for hero backgrounds */
+  --c-midnight:   #161A21;
+  --c-loden:      #2F3A33;  /* deep olive — rare, for secondary backgrounds */
+
+  /* Status — kept restrained, never neon */
+  --c-success:    #4F6B4E;
+  --c-warning:    #B08545;
+  --c-danger:     #8C4A3A;
+
+  /* ==========================================================
+     COLOR — semantic
+     Use these in components, not the raw palette.
+     ========================================================== */
+  --fg-1:         var(--c-ink);       /* body */
+  --fg-2:         var(--c-graphite);  /* secondary */
+  --fg-3:         var(--c-stone);     /* tertiary */
+  --fg-4:         var(--c-silt);      /* captions, placeholders */
+  --fg-inverse:   var(--c-bone);
+
+  --bg-canvas:    var(--c-paper);     /* page */
+  --bg-surface:   var(--c-bone);      /* cards on canvas */
+  --bg-raised:    var(--c-white);     /* dialogs */
+  --bg-sunken:    var(--c-linen);     /* input fills, sections */
+  --bg-inverse:   var(--c-midnight);
+
+  --line-soft:    var(--c-sand);
+  --line:         var(--c-silt);
+  --line-strong:  var(--c-graphite);
+
+  --accent:       var(--c-brass);
+  --accent-ink:   var(--c-brass-900);
+  --accent-soft:  var(--c-brass-100);
+
+  /* ==========================================================
+     TYPE — families
+     ========================================================== */
+  --font-display: "Cormorant Garamond", "Cormorant", "EB Garamond", Georgia, serif;
+  --font-text:    "Manrope", "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:    ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+
+  /* ==========================================================
+     TYPE — scale (modular, ratio ~1.25, perfect-fourth ish)
+     ========================================================== */
+  --fs-12: 0.75rem;     /* 12 — micro, eyebrows */
+  --fs-13: 0.8125rem;   /* 13 — captions */
+  --fs-14: 0.875rem;    /* 14 — small body */
+  --fs-16: 1rem;        /* 16 — body */
+  --fs-18: 1.125rem;    /* 18 — lead */
+  --fs-20: 1.25rem;     /* 20 */
+  --fs-24: 1.5rem;      /* 24 — h5 */
+  --fs-30: 1.875rem;    /* 30 — h4 */
+  --fs-36: 2.25rem;     /* 36 — h3 */
+  --fs-48: 3rem;        /* 48 — h2 */
+  --fs-64: 4rem;        /* 64 — h1 */
+  --fs-88: 5.5rem;      /* 88 — display */
+  --fs-128: 8rem;       /* 128 — editorial */
+
+  /* line-heights */
+  --lh-tight:   1.02;
+  --lh-snug:    1.15;
+  --lh-display: 1.05;
+  --lh-body:    1.55;
+  --lh-loose:   1.7;
+
+  /* letter-spacing */
+  --tracking-display: -0.015em;
+  --tracking-body:     0em;
+  --tracking-eyebrow:  0.18em;
+  --tracking-label:    0.06em;
+
+  /* ==========================================================
+     SPACING — 4px base, generous
+     ========================================================== */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32:  128px;
+  --space-40:  160px;
+  --space-48:  192px;
+
+  /* ==========================================================
+     RADII — minimal. Westmore is square-edged.
+     ========================================================== */
+  --radius-0:  0px;
+  --radius-1:  2px;   /* default — inputs, cards */
+  --radius-2:  4px;
+  --radius-pill: 999px;  /* used only for pills/tags */
+
+  /* ==========================================================
+     SHADOWS — soft, low, paper-on-paper
+     ========================================================== */
+  --shadow-1: 0 1px 0 0 rgba(27, 31, 38, 0.04);
+  --shadow-2: 0 1px 2px 0 rgba(27, 31, 38, 0.06), 0 1px 0 0 rgba(27, 31, 38, 0.04);
+  --shadow-3: 0 8px 24px -8px rgba(27, 31, 38, 0.10), 0 2px 4px -2px rgba(27, 31, 38, 0.06);
+  --shadow-4: 0 24px 48px -16px rgba(27, 31, 38, 0.14), 0 4px 8px -4px rgba(27, 31, 38, 0.06);
+
+  /* ==========================================================
+     MOTION — slow, certain, never bouncy
+     ========================================================== */
+  --ease-standard: cubic-bezier(0.32, 0.08, 0.24, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:       cubic-bezier(0.5, 0, 0.75, 0);
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+  --dur-3: 360ms;
+  --dur-4: 600ms;
+  --dur-5: 900ms;
+}
+
+/* =========================================================================
+   SEMANTIC TYPE STYLES
+   Use these classes (or @apply-style variables) directly.
+   ========================================================================= */
+
+html, body {
+  font-family: var(--font-text);
+  font-size: var(--fs-16);
+  line-height: var(--lh-body);
+  color: var(--fg-1);
+  background: var(--bg-canvas);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.display-xl, h1.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-128);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--fg-1);
+}
+
+.display, h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-88);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--fg-1);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-64);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--fg-1);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-48);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-display);
+  color: var(--fg-1);
+}
+
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-36);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+h5 {
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: var(--fs-20);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-label);
+  color: var(--fg-1);
+}
+
+h6 {
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: var(--fs-14);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+p { font-size: var(--fs-16); line-height: var(--lh-body); color: var(--fg-1); }
+.lead { font-size: var(--fs-20); line-height: var(--lh-loose); color: var(--fg-2); }
+.small, small { font-size: var(--fs-14); line-height: var(--lh-body); color: var(--fg-2); }
+.caption { font-size: var(--fs-13); line-height: var(--lh-snug); color: var(--fg-3); letter-spacing: 0.01em; }
+
+.eyebrow {
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: var(--fs-12);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.italic-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+code, pre, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+
+a { color: var(--fg-1); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--line); transition: text-decoration-color var(--dur-2) var(--ease-standard); }
+a:hover { text-decoration-color: var(--accent); }
+
+::selection { background: var(--accent-soft); color: var(--accent-ink); }
+   Composed on top of /colors_and_type.css */
+
+@import url("../../colors_and_type.css");
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+/* ---------- layout ---------- */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
+.container--narrow { max-width: 920px; margin: 0 auto; padding: 0 64px; }
+.container--wide   { max-width: 1440px; margin: 0 auto; padding: 0 64px; }
+
+.section { padding: 128px 0; }
+.section--tight { padding: 80px 0; }
+.section--inverse { background: var(--bg-inverse); color: var(--fg-inverse); }
+.section--linen { background: var(--bg-sunken); }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: transparent;
+  transition: background 360ms var(--ease-standard), backdrop-filter 360ms var(--ease-standard), border-color 360ms;
+  border-bottom: 1px solid transparent;
+}
+.nav.is-scrolled {
+  background: rgba(246, 242, 233, 0.78);
+  backdrop-filter: blur(16px) saturate(110%);
+  -webkit-backdrop-filter: blur(16px) saturate(110%);
+  border-bottom-color: var(--line-soft);
+}
+.nav.is-inverse { color: var(--fg-inverse); }
+.nav.is-inverse.is-scrolled { background: rgba(22, 26, 33, 0.78); border-bottom-color: rgba(255,255,255,0.08); }
+
+.nav__inner { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; gap: 32px; }
+.nav__mark { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.28em; color: inherit; text-decoration: none; cursor: pointer; display: inline-flex; align-items: baseline; gap: 10px; white-space: nowrap; flex-shrink: 0; }
+.nav__mark-sub { font-family: var(--font-text); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; font-weight: 500; }
+.nav__links { display: flex; gap: 32px; flex-shrink: 1; }
+.nav__link {
+  font-family: var(--font-text); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: inherit; opacity: 0.7; text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid transparent;
+  transition: opacity var(--dur-2) var(--ease-standard), border-color var(--dur-2);
+  cursor: pointer; white-space: nowrap;
+}
+.nav__link:hover { opacity: 1; }
+.nav__link.is-active { opacity: 1; border-bottom-color: var(--accent); }
+.nav__right { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.nav__phone {
+  font-family: var(--font-text); font-size: 13px; letter-spacing: 0.04em; color: inherit; opacity: 0.7;
+  text-decoration: none; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.nav__phone:hover { opacity: 1; }
+.nav__cta--btn {
+  background: var(--c-ink); color: var(--c-bone) !important;
+  padding: 12px 18px; border: none; font-family: var(--font-text); font-size: 12px;
+  letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; border-radius: 2px;
+  white-space: nowrap;
+  transition: background var(--dur-2);
+}
+.nav__cta--btn:hover { background: var(--c-midnight); }
+.is-inverse .nav__cta--btn { background: var(--c-bone); color: var(--c-ink) !important; }
+.nav__cta {
+  font-family: var(--font-text); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: inherit; text-decoration: none; padding-bottom: 4px;
+  cursor: pointer;
+}
+
+/* ---------- mobile nav (burger + dropdown) ---------- */
+.nav__burger {
+  display: none;
+  width: 40px; height: 40px; padding: 0;
+  background: none; border: none; cursor: pointer;
+  align-items: center; justify-content: center;
+  color: inherit;
+}
+.nav__burger-icon { position: relative; display: inline-block; width: 22px; height: 14px; }
+.nav__burger-icon i {
+  position: absolute; left: 0; width: 100%; height: 1.5px; background: currentColor;
+  transition: transform var(--dur-2) var(--ease-standard), opacity var(--dur-1);
+}
+.nav__burger-icon i:nth-child(1) { top: 0; }
+.nav__burger-icon i:nth-child(2) { top: 6px; }
+.nav__burger-icon i:nth-child(3) { top: 12px; }
+.nav__burger-icon.is-x i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav__burger-icon.is-x i:nth-child(2) { opacity: 0; }
+.nav__burger-icon.is-x i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.nav__mobile {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--dur-3) var(--ease-standard);
+  background: var(--bg-canvas);
+  border-bottom: 1px solid transparent;
+}
+.nav.is-inverse .nav__mobile { background: var(--c-midnight); }
+.nav__mobile.is-open { max-height: 420px; border-bottom-color: var(--line-soft); }
+.nav__mobile .container--wide { display: flex; flex-direction: column; padding-top: 8px; padding-bottom: 24px; }
+.nav__mobile-link {
+  font-family: var(--font-text); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: inherit; text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--line-soft);
+  cursor: pointer;
+}
+.nav.is-inverse .nav__mobile-link { border-bottom-color: rgba(255,255,255,0.12); }
+.nav__mobile-phone {
+  font-family: var(--font-display); font-size: 28px; color: inherit; text-decoration: none;
+  padding-top: 20px;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-text); font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+  padding: 16px 24px; border-radius: 2px; border: 1px solid transparent;
+  cursor: pointer; text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--dur-2) var(--ease-standard);
+}
+.btn--primary { background: var(--c-ink); color: var(--c-bone); }
+.btn--primary:hover { background: var(--c-midnight); }
+.btn--ghost { background: transparent; color: var(--fg-1); border-color: var(--fg-1); }
+.btn--ghost:hover { background: var(--bg-sunken); }
+.btn--ghost-inverse { background: transparent; color: var(--fg-inverse); border-color: var(--fg-inverse); }
+.btn--ghost-inverse:hover { background: rgba(255,255,255,0.06); }
+.btn--link {
+  background: transparent; border: none; padding: 0; color: inherit;
+  font-family: var(--font-text); font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px; border-radius: 0; cursor: pointer;
+  transition: border-color var(--dur-2);
+}
+.btn--link:hover { border-color: var(--accent); }
+.btn .arrow { display: inline-block; transition: transform var(--dur-2) var(--ease-standard); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ---------- eyebrow ---------- */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--font-text); font-weight: 500; font-size: 11px;
+  letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--fg-3);
+}
+.eyebrow::before {
+  content: ""; width: 36px; height: 1px; background: var(--accent); display: inline-block;
+}
+.eyebrow--inverse { color: rgba(255,255,255,0.7); }
+
+/* ---------- section header ---------- */
+.section-head { margin-bottom: 80px; max-width: 760px; }
+.section-head--in-grid { margin-bottom: 0; }
+.section-head h2 {
+  margin: 18px 0 0; font-family: var(--font-display); font-weight: 400;
+  font-size: var(--fs-64); line-height: 1.32; letter-spacing: -0.015em;
+}
+.section-head h2 em { color: var(--accent-ink); font-style: italic; }
+.section-head p { margin: 32px 0 0; color: var(--fg-2); font-size: 18px; line-height: 1.65; max-width: 60ch; }
+
+/* ---------- image slots ---------- */
+.img-slot {
+  background: linear-gradient(135deg, var(--c-sand) 0%, var(--c-linen) 50%, var(--c-brass-100) 100%);
+  position: relative; overflow: hidden; border-radius: 2px;
+}
+.img-slot--dark { background: linear-gradient(135deg, var(--c-graphite) 0%, var(--c-stone) 60%, var(--c-silt) 100%); }
+.img-slot--midnight { background: linear-gradient(135deg, var(--c-midnight) 0%, #232936 80%, var(--c-graphite) 100%); }
+.img-slot.has-img { background-color: var(--c-graphite); }
+.img-slot::after {
+  content: attr(data-caption);
+  position: absolute; bottom: 16px; left: 18px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(27,31,38,0.42);
+  pointer-events: none;
+}
+.img-slot--dark::after, .img-slot--midnight::after, .img-slot.has-img::after { color: rgba(251,248,242,0.85); text-shadow: 0 1px 2px rgba(0,0,0,0.4); }
+.img-slot[data-caption=""]::after { display: none; }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 96px;
+  padding: 160px 0 96px;
+}
+.hero__title {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(40px, 6vw, 88px); line-height: 1.3; letter-spacing: -0.015em;
+  color: var(--fg-1); margin: 22px 0 0;
+}
+.hero__title em { color: var(--accent-ink); }
+.hero__sub { margin: 32px 0 0; max-width: 38ch; color: var(--fg-2); font-size: 18px; line-height: 1.65; }
+.hero__cta { display: flex; gap: 16px; margin-top: 40px; align-items: center; }
+.hero__image { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; }
+.hero__image .img-slot { width: 100% !important; height: 100% !important; aspect-ratio: auto !important; }
+
+/* ---------- work grid ---------- */
+.work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+.work-card { grid-column: span 6; cursor: pointer; display: block; text-decoration: none; color: inherit; }
+.work-card .img-wrap { overflow: hidden; aspect-ratio: 4 / 5; margin-bottom: 18px; }
+.work-card .img-slot { width: 100%; height: 100%; transition: transform 600ms var(--ease-standard); }
+.work-card:hover .img-slot { transform: scale(1.02); }
+.work-card .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.work-card .meta h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.15; margin: 0; }
+.work-card .meta .loc { font-family: var(--font-text); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-3); }
+.work-card.is-wide { grid-column: span 12; }
+.work-card.is-wide .img-wrap { aspect-ratio: 16 / 9; }
+.work-card.is-third { grid-column: span 4; }
+.work-card.is-third .img-wrap { aspect-ratio: 3 / 4; }
+
+/* ---------- footer ---------- */
+.footer { background: var(--bg-inverse); color: var(--fg-inverse); padding: 96px 0 48px; }
+.footer__top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 64px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.10); }
+.footer h4 { font-family: var(--font-text); font-weight: 500; font-size: 11px; letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0 0 18px; }
+.footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.footer a { color: var(--fg-inverse); text-decoration: none; font-size: 14px; opacity: 0.85; }
+.footer a:hover { opacity: 1; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+.footer__statement { font-family: var(--font-display); font-size: 28px; line-height: 1.2; max-width: 26ch; }
+.footer__statement em { color: var(--c-brass-300); }
+.footer__bottom { display: flex; justify-content: space-between; padding-top: 32px; font-size: 12px; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); }
+
+/* ---------- forms ---------- */
+.field { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.field label { font-family: var(--font-text); font-size: 11px; font-weight: 500; letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--fg-3); }
+.field input, .field textarea, .field select {
+  font: inherit; font-size: 16px; color: var(--fg-1);
+  background: transparent; border: none; border-bottom: 1px solid var(--line);
+  padding: 12px 0; border-radius: 0;
+  transition: border-color var(--dur-2);
+  -webkit-appearance: none; appearance: none;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none; border-bottom-color: var(--accent);
+}
+.field input::placeholder { color: var(--fg-4); }
+.field textarea { resize: vertical; min-height: 88px; }
+
+/* ---------- generic cards ---------- */
+.card-surface {
+  background: var(--bg-surface); border: 1px solid var(--line-soft); border-radius: 2px;
+  padding: 40px;
+  transition: box-shadow var(--dur-3) var(--ease-standard);
+}
+.card-surface:hover { box-shadow: var(--shadow-3); }
+
+/* ---------- process phases ---------- */
+.phases { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.phase { padding: 40px 28px; border-right: 1px solid var(--line-soft); }
+.phase:last-child { border-right: none; }
+.phase .num { font-family: var(--font-display); font-style: italic; font-size: 56px; color: var(--accent); line-height: 1; margin-bottom: 24px; }
+.phase h4 { font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.2; margin: 0 0 12px; }
+.phase p { color: var(--fg-3); font-size: 14px; line-height: 1.6; margin: 0; }
+.phase .dur { display: block; margin-top: 18px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); letter-spacing: 0.06em; }
+
+/* ---------- stats ---------- */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+.stat .num { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; color: var(--fg-1); letter-spacing: -0.02em; }
+.stat .num em { color: var(--accent-ink); font-style: italic; }
+.stat .label { display: block; margin-top: 14px; font-family: var(--font-text); font-size: 12px; letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--fg-3); }
+
+/* ---------- filter row ---------- */
+.filters { display: flex; gap: 4px; border-bottom: 1px solid var(--line-soft); margin-bottom: 64px; }
+.filter {
+  font-family: var(--font-text); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 18px 22px; cursor: pointer; color: var(--fg-3);
+  border: none; background: none; border-bottom: 1px solid transparent; margin-bottom: -1px;
+  transition: color var(--dur-2);
+}
+.filter.is-active { color: var(--fg-1); border-bottom-color: var(--fg-1); }
+.filter:hover { color: var(--fg-1); }
+
+/* ---------- trust pills ---------- */
+.trust-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.trust-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border: 1px solid var(--line-soft); background: var(--bg-surface);
+  border-radius: 999px;
+  font-family: var(--font-text); font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+.trust-pill .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--accent); }
+.trust-pill .star { color: var(--accent); }
+
+/* ---------- stats bar ---------- */
+.stats-bar {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+  background: var(--bg-surface);
+}
+.stats-bar .stat-cell { padding: 36px 28px; border-right: 1px solid var(--line-soft); text-align: center; }
+.stats-bar .stat-cell:last-child { border-right: none; }
+.stats-bar .stat-num { font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 1; color: var(--fg-1); letter-spacing: -0.015em; }
+.stats-bar .stat-num em { color: var(--accent-ink); font-style: italic; }
+.stats-bar .stat-lbl { display: block; margin-top: 12px; font-family: var(--font-text); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+
+/* ---------- empathy cards ---------- */
+.empathy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.empathy-card {
+  background: var(--bg-surface); border: 1px solid var(--line-soft); padding: 40px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.empathy-card .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--fg-3); }
+.empathy-card .quote {
+  font-family: var(--font-display); font-style: italic; font-size: 21px; line-height: 1.4; color: var(--fg-1); margin: 0;
+  border-left: 1px solid var(--accent); padding: 4px 0 6px 18px;
+}
+.empathy-card .body { font-size: 15px; line-height: 1.65; color: var(--fg-2); margin: 0; }
+
+/* ---------- differentiators ---------- */
+.diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.diff-cell { padding: 56px 40px; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.diff-cell:nth-child(2n) { border-right: none; }
+.diff-cell:nth-last-child(-n+2) { border-bottom: none; }
+.diff-cell .num { font-family: var(--font-display); font-style: italic; font-size: 56px; color: var(--accent); line-height: 1; margin-bottom: 18px; }
+.diff-cell h3 { font-family: var(--font-display); font-weight: 400; font-size: 30px; line-height: 1.4; margin: 0 0 24px; max-width: 22ch; }
+.diff-cell h3 em { color: var(--accent-ink); font-style: italic; }
+.diff-cell p { font-size: 15px; line-height: 1.7; color: var(--fg-2); margin: 0; max-width: 50ch; }
+
+/* ---------- reviews ---------- */
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.review-card { background: var(--bg-surface); border: 1px solid var(--line-soft); padding: 40px; display: flex; flex-direction: column; gap: 22px; }
+.review-card .stars { color: var(--accent); letter-spacing: 0.2em; font-size: 14px; }
+.review-card blockquote { font-family: var(--font-display); font-size: 21px; line-height: 1.45; color: var(--fg-1); margin: 0; padding-bottom: 6px; }
+.review-card .who { font-family: var(--font-text); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+
+/* ---------- materials ---------- */
+.materials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px 80px; }
+.material h4 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 0 0 10px; color: var(--fg-1); }
+.material p { font-size: 15px; line-height: 1.7; color: var(--fg-2); margin: 0; max-width: 48ch; }
+.material .marker { display: inline-block; width: 28px; height: 1px; background: var(--accent); vertical-align: middle; margin-right: 12px; }
+
+/* ---------- offer box ---------- */
+.offer-box {
+  background: var(--bg-inverse); color: var(--fg-inverse); padding: 64px 56px; border-radius: 2px;
+  position: relative; overflow: hidden;
+}
+.offer-box .price { font-family: var(--font-display); font-weight: 400; font-size: 96px; line-height: 1; color: var(--c-brass-300); letter-spacing: -0.02em; }
+.offer-box .price em { font-style: italic; }
+.offer-box .price-sub { display: block; margin-top: 12px; font-family: var(--font-text); font-weight: 500; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+.offer-box ul { list-style: none; padding: 0; margin: 36px 0 0; display: flex; flex-direction: column; gap: 18px; }
+.offer-box ul li { display: flex; gap: 16px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.85); }
+.offer-box ul li::before {
+  content: ""; flex-shrink: 0;
+  display: inline-block; width: 14px; height: 1px; background: var(--c-brass-300); margin-top: 12px;
+}
+.offer-box ul li strong { color: var(--c-bone); font-weight: 500; }
+
+/* ---------- FAQ ---------- */
+.faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--line-soft); }
+.faq-item { border-bottom: 1px solid var(--line-soft); }
+.faq-q {
+  display: flex; align-items: baseline; gap: 24px;
+  width: 100%; padding: 28px 0;
+  background: none; border: none; cursor: pointer; text-align: left;
+  font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.3; color: var(--fg-1);
+}
+.faq-q .marker { color: var(--accent); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; min-width: 28px; flex-shrink: 0; }
+.faq-q .toggle { margin-left: auto; font-family: var(--font-display); font-size: 28px; font-style: italic; color: var(--fg-3); transition: transform var(--dur-2); }
+.faq-item.is-open .faq-q .toggle { transform: rotate(45deg); color: var(--accent); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height var(--dur-3) var(--ease-standard);
+}
+.faq-item.is-open .faq-a { max-height: 400px; }
+.faq-a-inner {
+  padding: 0 0 32px 52px; font-size: 16px; line-height: 1.75; color: var(--fg-2); max-width: 72ch;
+}
+
+/* ---------- gallery card variant ---------- */
+.gallery-meta { margin-top: 18px; }
+.gallery-meta .loc { display: block; font-family: var(--font-text); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+.gallery-meta h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 8px 0 12px; padding-bottom: 0.1em; }
+.gallery-meta .details { font-size: 13px; color: var(--fg-3); letter-spacing: 0.02em; font-family: var(--font-mono); }
+.gallery-meta blockquote {
+  margin: 18px 0 0; padding-left: 16px; border-left: 1px solid var(--accent);
+  font-family: var(--font-display); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--fg-2);
+}
+
+/* ---------- responsive grid utilities (use these in JSX in place of inline-style grids) ---------- */
+.g2-head-image { display: grid; grid-template-columns: 7fr 5fr; gap: 80px; align-items: end; }
+.g2-head-image--equal { grid-template-columns: 1fr 1fr; }
+.g2-head-image--wide-narrow { grid-template-columns: 1.4fr 1fr; }
+.g2-narrow-wide { display: grid; grid-template-columns: 5fr 7fr; gap: 96px; align-items: start; }
+.g2-wide-narrow { display: grid; grid-template-columns: 6fr 5fr; gap: 80px; align-items: center; }
+.g2-faq         { display: grid; grid-template-columns: 4fr 8fr; gap: 96px; align-items: start; }
+.g2-case-brief  { display: grid; grid-template-columns: 1fr 2fr; gap: 96px; align-items: start; }
+.g2-case-pair   { display: grid; grid-template-columns: 2fr 3fr; gap: 32px; }
+.g2-process-row { display: grid; grid-template-columns: 1fr 2fr 2fr; gap: 64px; padding: 64px 0; border-bottom: 1px solid var(--line-soft); }
+.g2-process-row.first { border-top: 1px solid var(--line-soft); }
+.g5-process { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12); }
+.g5-process .ph { padding: 40px 28px; border-right: 1px solid rgba(255,255,255,0.12); }
+.g5-process .ph:last-child { border-right: none; }
+.g4-specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line-soft); }
+.g4-specs > div { padding: 24px 0; border-bottom: 1px solid var(--line-soft); }
+.cta-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+@media (max-width: 700px) { .form-grid { grid-template-columns: 1fr; } }
+.review-trust { margin-top: 56px; display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; padding: 28px 32px; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1200px) {
+  .nav__phone { display: none; }
+  .g2-narrow-wide, .g2-wide-narrow, .g2-faq, .g2-case-brief { gap: 56px; }
+}
+
+@media (max-width: 1100px) {
+  .stats-bar { grid-template-columns: repeat(3, 1fr); }
+  .stats-bar .stat-cell:nth-child(3) { border-right: none; }
+  .stats-bar .stat-cell:nth-child(n+4) { border-top: 1px solid var(--line-soft); }
+  .empathy-grid, .review-grid, .materials-grid { grid-template-columns: 1fr; gap: 24px; }
+  .diff-grid { grid-template-columns: 1fr; }
+  .diff-cell { border-right: none; border-bottom: 1px solid var(--line-soft); }
+  .diff-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--line-soft); }
+  .diff-cell:last-child { border-bottom: none; }
+  .g2-head-image, .g2-head-image--equal, .g2-head-image--wide-narrow { grid-template-columns: 1fr; gap: 48px; align-items: start; }
+  .g2-narrow-wide, .g2-wide-narrow, .g2-faq, .g2-case-brief { grid-template-columns: 1fr; gap: 48px; }
+  .g2-process-row { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
+  .g5-process { grid-template-columns: 1fr 1fr; }
+  .g5-process .ph { border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .g5-process .ph:nth-child(2n) { border-right: none; }
+  .g5-process .ph:last-child { border-bottom: none; grid-column: 1 / -1; }
+  .footer__top { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .container, .container--narrow, .container--wide { padding: 0 24px; }
+  .hero { grid-template-columns: 1fr; padding: 120px 0 64px; gap: 40px; min-height: auto; }
+  .hero__image { aspect-ratio: 4 / 5; max-height: 60vh; }
+  .stats-bar { position: relative; z-index: 1; }
+  .work-card, .work-card.is-third, .work-card.is-wide { grid-column: span 12; }
+  .work-card .img-wrap, .work-card.is-wide .img-wrap { aspect-ratio: 4 / 5; }
+  .work-grid { gap: 40px; }
+  .phases { grid-template-columns: 1fr; }
+  .phase { border-right: none; border-bottom: 1px solid var(--line-soft); }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+  .stats-bar .stat-cell { padding: 28px 16px; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+  .stats-bar .stat-cell:nth-child(2n) { border-right: none; }
+  .stats-bar .stat-cell:nth-child(n+4) { border-top: none; }
+  .stats-bar .stat-cell:last-child { border-bottom: none; grid-column: 1 / -1; }
+  .stats-bar .stat-num { font-size: 44px; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .section { padding: 72px 0; }
+  .section-head { margin-bottom: 48px; }
+  .section-head h2 { font-size: 36px !important; line-height: 1.2; }
+  .nav__links { display: none; }
+  .nav__burger { display: inline-flex; }
+  .nav__inner { padding: 18px 0; gap: 12px; }
+  .nav__mark { font-size: 16px; letter-spacing: 0.2em; }
+  .nav__mark-sub { display: none; }
+  .nav__cta--btn { padding: 10px 14px; font-size: 11px; }
+  .hero__title { font-size: 44px !important; }
+  .empathy-card, .review-card, .card-surface { padding: 28px; }
+  .empathy-card .quote, .review-card blockquote { font-size: 18px; }
+  .diff-cell { padding: 40px 28px; }
+  .diff-cell h3 { font-size: 24px; }
+  .offer-box { padding: 40px 28px; }
+  .offer-box .price { font-size: 56px; }
+  .g4-specs { grid-template-columns: 1fr 1fr; }
+  .footer { padding: 64px 0 32px; }
+  .footer__top { grid-template-columns: 1fr; padding-bottom: 40px; }
+  .footer__bottom { flex-direction: column; gap: 12px; padding-top: 24px; align-items: flex-start; }
+  .footer__statement { font-size: 22px; }
+  .review-trust { gap: 24px; padding: 20px; }
+  .faq-q { font-size: 18px; gap: 14px; padding: 20px 0; }
+  .faq-a-inner { padding-left: 38px; font-size: 15px; }
+}
+
+@media (max-width: 560px) {
+  .container, .container--narrow, .container--wide { padding: 0 18px; }
+  .hero__title { font-size: 36px !important; }
+  .section-head h2 { font-size: 30px !important; }
+  .g5-process { grid-template-columns: 1fr; }
+  .g5-process .ph { border-right: none; }
+  .g5-process .ph:last-child { grid-column: auto; }
+  .stats-bar { grid-template-columns: 1fr; }
+  .stats-bar .stat-cell { border-right: none; }
+  .stats-bar .stat-cell:last-child { grid-column: auto; }
+  .trust-row { gap: 8px; margin-top: 22px; }
+  .trust-pill { padding: 6px 12px; font-size: 10px; letter-spacing: 0.1em; }
+  .btn { padding: 13px 18px; font-size: 12px; }
+  .hero__cta { gap: 12px; flex-direction: column; align-items: stretch; }
+  .hero__cta .btn { justify-content: center; }
+  .filters { overflow-x: auto; flex-wrap: nowrap; }
+  .filter { white-space: nowrap; padding: 14px 18px; }
+  .footer__statement { font-size: 20px; }
+  .offer-box .price { font-size: 44px; }
+  .g4-specs { grid-template-columns: 1fr; }
+}
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+// Westmore shared components
+// Loaded as type="text/babel" — exposes everything to window at the end.
+
+const { useState, useEffect } = React;
+
+/* ---------- Nav ---------- */
+function Nav({ current, onNav, inverse }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const root = document.querySelector('.app-scroll') || window;
+    const target = root === window ? window : root;
+    const onScroll = () => {
+      const y = root === window ? window.scrollY : root.scrollTop;
+      setScrolled(y > 40);
+    };
+    target.addEventListener('scroll', onScroll, { passive: true });
+    return () => target.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const links = [
+    { id: 'work',     label: 'Our Work' },
+    { id: 'process',  label: 'Process' },
+    { id: 'reviews',  label: 'Reviews' },
+    { id: 'faq',      label: 'FAQ' },
+  ];
+
+  const go = (id) => { setMenuOpen(false); onNav(id); };
+
+  return (
+    <nav className={`nav ${scrolled || menuOpen ? 'is-scrolled' : ''} ${inverse ? 'is-inverse' : ''} ${menuOpen ? 'is-menu-open' : ''}`}>
+      <div className="container--wide">
+        <div className="nav__inner">
+          <a className="nav__mark" onClick={() => go('home')}>
+            EXAMPLE LKN <span className="nav__mark-sub">· Clearline Mkt</span>
+          </a>
+          <div className="nav__links">
+            {links.map(l => (
+              <a
+                key={l.id}
+                className={`nav__link ${current === l.id ? 'is-active' : ''}`}
+                onClick={() => go(l.id)}
+              >{l.label}</a>
+            ))}
+          </div>
+          <div className="nav__right">
+            <a className="nav__phone" href="tel:+17047000000">(704) 700-0000</a>
+            <a className="nav__cta nav__cta--btn" onClick={() => go('contact')}>Book Consultation</a>
+            <button
+              className="nav__burger"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(o => !o)}
+            >
+              <span className={`nav__burger-icon ${menuOpen ? 'is-x' : ''}`}><i></i><i></i><i></i></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile dropdown panel */}
+      <div className={`nav__mobile ${menuOpen ? 'is-open' : ''}`}>
+        <div className="container--wide">
+          {links.map(l => (
+            <a key={l.id} className="nav__mobile-link" onClick={() => go(l.id)}>{l.label}</a>
+          ))}
+          <a className="nav__mobile-link" onClick={() => go('contact')}>Book Consultation</a>
+          <a className="nav__mobile-phone" href="tel:+17047000000">(704) 700-0000</a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+/* ---------- Footer ---------- */
+function Footer({ onNav }) {
+  return (
+    <footer className="footer">
+      <div className="container--wide">
+        <div className="footer__top">
+          <div>
+            <div className="footer__statement">
+              Fixed-price contracts.<br/>
+              In-house team.<br/>
+              <em>A standard we put our name on.</em>
+            </div>
+            <p style={{ marginTop: 32, fontSize: 14, lineHeight: 1.7, color: 'rgba(255,255,255,0.65)', maxWidth: '40ch' }}>
+              A family-owned remodeling team serving Charlotte, Lake Norman, and the greater Carolinas for over 11 years.
+            </p>
+          </div>
+          <div>
+            <h4>Services</h4>
+            <ul>
+              <li><a>Kitchen Remodels</a></li>
+              <li><a>Bathroom Remodels</a></li>
+              <li><a>Tile Work</a></li>
+              <li><a>Flooring</a></li>
+              <li><a>Interior Painting</a></li>
+              <li><a>Framing & Carpentry</a></li>
+              <li><a>Decks & Fences</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Service Area</h4>
+            <ul>
+              <li><a>Charlotte</a></li>
+              <li><a>Lake Norman</a></li>
+              <li><a>Cornelius</a></li>
+              <li><a>Davidson</a></li>
+              <li><a>Mooresville</a></li>
+              <li><a>Huntersville</a></li>
+              <li><a>Concord & Belmont</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:+17047000000">(704) 700-0000</a></li>
+              <li><a href="mailto:info@example.com">info@example.com</a></li>
+              <li style={{ opacity: 0.6, cursor: 'default' }}><span>Mon–Fri 8 AM – 6 PM</span></li>
+              <li style={{ opacity: 0.6, cursor: 'default' }}><span>Saturday by Appointment</span></li>
+            </ul>
+            <div style={{ marginTop: 28 }}>
+              <h4 style={{ marginBottom: 12 }}>Community Partners</h4>
+              <ul style={{ fontSize: 13 }}>
+                <li style={{ opacity: 0.7, cursor: 'default' }}><span>Second Harvest Food Bank</span></li>
+                <li style={{ opacity: 0.7, cursor: 'default' }}><span>Habitat for Humanity Charlotte</span></li>
+                <li style={{ opacity: 0.7, cursor: 'default' }}><span>Isaiah 117 House</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="footer__bottom">
+          <span>© 2026 Example Remodeling, Charlotte NC.</span>
+          <span>NC General Contractor License No. XXXXXX · Fully Insured · BBB Accredited</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ---------- Small primitives ---------- */
+function Eyebrow({ children, inverse }) {
+  return <span className={`eyebrow ${inverse ? 'eyebrow--inverse' : ''}`}>{children}</span>;
+}
+
+function SectionHeader({ eyebrow, title, body, alignedRight, inGrid }) {
+  return (
+    <div className={`section-head ${inGrid ? 'section-head--in-grid' : ''}`} style={alignedRight ? { marginLeft: 'auto' } : undefined}>
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      <h2 dangerouslySetInnerHTML={{ __html: title }} />
+      {body && <p>{body}</p>}
+    </div>
+  );
+}
+
+function Button({ children, variant = 'primary', onClick, arrow }) {
+  return (
+    <button className={`btn btn--${variant}`} onClick={onClick}>
+      <span>{children}</span>
+      {arrow && <span className="arrow">→</span>}
+    </button>
+  );
+}
+
+function Field({ label, type = 'text', placeholder, value, onChange, textarea, options }) {
+  const input =
+    textarea ? <textarea placeholder={placeholder} value={value} onChange={e => onChange?.(e.target.value)} />
+    : options ? (
+        <select value={value} onChange={e => onChange?.(e.target.value)}>
+          {options.map(o => <option key={o} value={o}>{o}</option>)}
+        </select>
+      )
+    : <input type={type} placeholder={placeholder} value={value} onChange={e => onChange?.(e.target.value)} />;
+  return (
+    <div className="field">
+      <label>{label}</label>
+      {input}
+    </div>
+  );
+}
+
+function ImageSlot({ caption, variant = 'light', aspect, style, src, position }) {
+  const cls = `img-slot img-slot--${variant === 'dark' ? 'dark' : variant === 'midnight' ? 'midnight' : 'light'} ${src ? 'has-img' : ''}`;
+  const bg = src ? { backgroundImage: `url("${src}")`, backgroundSize: 'cover', backgroundPosition: position || 'center' } : null;
+  return (
+    <div className={cls} data-caption={caption || ''} style={{ aspectRatio: aspect || undefined, ...bg, ...style }} />
+  );
+}
+
+/* ---------- Work card ---------- */
+function WorkCard({ project, span = 'half', onOpen }) {
+  const cls = span === 'wide' ? 'work-card is-wide' : span === 'third' ? 'work-card is-third' : 'work-card';
+  return (
+    <a className={cls} onClick={() => onOpen?.(project)}>
+      <div className="img-wrap">
+        <ImageSlot caption={project.caption} variant={project.tone || 'light'} />
+      </div>
+      <div className="meta">
+        <h3>{project.title}</h3>
+        <span className="loc">{project.location}</span>
+      </div>
+      <div style={{ marginTop: 8, fontSize: 13, color: 'var(--fg-3)', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>
+        {project.type} · {project.year}
+      </div>
+    </a>
+  );
+}
+
+/* ---------- Process phase ---------- */
+function ProcessPhase({ num, title, body, duration }) {
+  return (
+    <div className="phase">
+      <div className="num">{num}</div>
+      <h4>{title}</h4>
+      <p>{body}</p>
+      <span className="dur">{duration}</span>
+    </div>
+  );
+}
+
+/* ---------- Stats ---------- */
+function StatRow({ items }) {
+  return (
+    <div className="stats">
+      {items.map((s, i) => (
+        <div className="stat" key={i}>
+          <div className="num" dangerouslySetInnerHTML={{ __html: s.num }} />
+          <span className="label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ---------- export to window ---------- */
+Object.assign(window, {
+  Nav, Footer, Eyebrow, SectionHeader, Button, Field, ImageSlot,
+  WorkCard, ProcessPhase, StatRow,
+});
+  </script>
+  <script type="text/babel">
+// Example Remodeling — Home (full landing page)
+
+const PROJECTS_PREVIEW = [
+  {
+    id: 'davidson',
+    title: 'White Oak and Brazilian Quartzite',
+    location: 'Davidson, NC',
+    type: 'Primary Kitchen',
+    details: 'Custom cabinetry · Quartzite waterfall island · 12-week build',
+    quote: 'We had been planning this kitchen for four years. It came out better than anything we had imagined.',
+    img: './kitchen-classic-white.jpg',
+    position: 'center',
+  },
+  {
+    id: 'cornelius',
+    title: 'Wet Room and Freestanding Soak',
+    location: 'Cornelius, NC',
+    type: 'Primary Bath',
+    details: 'Large-format porcelain · Freestanding tub · 9 weeks',
+    quote: 'First contractor we have had who answered every call.',
+    img: './bath-freestanding-tub.jpg',
+    position: 'center',
+  },
+  {
+    id: 'mooresville',
+    title: 'Custom Tile and Engineered Hardwood',
+    location: 'Mooresville, NC',
+    type: 'Kitchen and Guest Bath',
+    details: 'Handmade tile · Quartz countertops · Two weeks ahead of schedule',
+    quote: 'Not one surprise. The number they gave us was the number we paid.',
+    img: './kitchen-bright-island.jpg',
+    position: 'center',
+  },
+];
+
+function FaqItem({ marker, q, a, open, onToggle }) {
+  return (
+    <div className={`faq-item ${open ? 'is-open' : ''}`}>
+      <button className="faq-q" onClick={onToggle}>
+        <span className="marker">{marker}</span>
+        <span style={{ flex: 1 }}>{q}</span>
+        <span className="toggle">+</span>
+      </button>
+      <div className="faq-a"><div className="faq-a-inner">{a}</div></div>
+    </div>
+  );
+}
+
+function Home({ onNav, onOpenProject }) {
+  const [openFaq, setOpenFaq] = React.useState(0);
+  const toggle = (i) => setOpenFaq(openFaq === i ? -1 : i);
+
+  return (
+    <React.Fragment>
+      {/* ============ HERO ============ */}
+      <section className="container--wide">
+        <div className="hero">
+          <div className="hero__left">
+            <Eyebrow>Charlotte · Lake Norman · Greater Carolinas</Eyebrow>
+            <h1 className="hero__title">
+              The home you've been imagining,<br/>
+              <em>built right.</em>
+            </h1>
+            <p className="hero__sub">
+              712 completed projects across Charlotte. 11 years. A fixed-price promise we have never broken.
+            </p>
+            <div className="hero__cta">
+              <Button arrow onClick={() => onNav('contact')}>Schedule a Conversation</Button>
+              <Button variant="link" onClick={() => onNav('work')}>See Our Work</Button>            </div>
+            <div className="trust-row">
+              <span className="trust-pill"><span className="dot"></span>BBB A+ Rated · Since 2013</span>
+              <span className="trust-pill"><span className="star">★</span>4.9 Stars · Google &amp; Houzz</span>
+              <span className="trust-pill"><span className="dot"></span>NC Licensed · Fully Insured</span>
+            </div>
+          </div>
+          <div className="hero__image">
+            <ImageSlot
+              caption=""
+              aspect="3 / 4"
+              src="./kitchen-davidson.jpeg"
+              position="center"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ============ STATS BAR ============ */}
+      <section style={{ padding: '0' }}>
+        <div className="container--wide">
+          <div className="stats-bar">
+            <div className="stat-cell">
+              <div className="stat-num">712<em>+</em></div>
+              <span className="stat-lbl">Projects Completed</span>
+            </div>
+            <div className="stat-cell">
+              <div className="stat-num">11</div>
+              <span className="stat-lbl">Years in Charlotte</span>
+            </div>
+            <div className="stat-cell">
+              <div className="stat-num"><em>A+</em></div>
+              <span className="stat-lbl">BBB Rating</span>
+            </div>
+            <div className="stat-cell">
+              <div className="stat-num">4.9<em>★</em></div>
+              <span className="stat-lbl">Google · Houzz</span>
+            </div>
+            <div className="stat-cell">
+              <div className="stat-num"><em>$0</em></div>
+              <span className="stat-lbl">Surprise Invoices</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ EMPATHY ============ */}
+      <section className="section">
+        <div className="container--wide">
+          <div className="g2-head-image" style={{ marginBottom: 64 }}>
+            <SectionHeader
+              inGrid
+              eyebrow="We Understand"
+              title="You've done the research. You've gotten quotes.<br/><em>Something still doesn't feel right.</em>"
+              body="Almost every homeowner who calls us says one of three things. If any of these sounds familiar, you're in the right place."
+            />
+            <ImageSlot
+              src="./living-room-windows.jpg"
+              caption=""
+              style={{ width: '100%', aspectRatio: '5 / 4' }}
+              position="center"
+            />
+          </div>
+          <div className="empathy-grid">
+            <div className="empathy-card">
+              <div className="num">01</div>
+              <blockquote className="quote">"The bids I got are thousands of dollars apart and no one explained why."</blockquote>
+              <p className="body">That gap exists because most bids are not real proposals. They are opening offers designed to win the job, with the true cost revealed after demolition begins. We give you one number, written out line by line, before we touch a single wall. That number does not change.</p>
+            </div>
+            <div className="empathy-card">
+              <div className="num">02</div>
+              <blockquote className="quote">"A contractor disappeared after demo once. We were completely stuck."</blockquote>
+              <p className="body">It is the most common story we hear, and it happens for predictable reasons. Our team is in-house. When you work with us, you have one dedicated project manager who knows your project from start to finish, answers your calls, and is on-site throughout the entire build.</p>
+            </div>
+            <div className="empathy-card">
+              <div className="num">03</div>
+              <blockquote className="quote">"I know what I want. I just need someone who will actually build it."</blockquote>
+              <p className="body">You are not looking for someone to sell you on a vision. You have a vision. You are looking for a team precise enough to execute it and trustworthy enough to keep their word from the first conversation to the final walkthrough. That is exactly what we do.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ IMAGE BAND between empathy and gallery ============ */}
+      <section style={{ padding: 0 }}>
+        <div className="container--wide">
+          <ImageSlot
+            src="./kitchen-dark-gloss.jpg"
+            caption=""
+            style={{ width: '100%', aspectRatio: '21 / 9' }}
+          />
+        </div>
+      </section>
+
+      {/* ============ GALLERY ============ */}
+      <section id="section-work" className="section section--linen">
+        <div className="container--wide">
+          <SectionHeader
+            eyebrow="Our Work"
+            title="Every project below was completed by our team,<br/><em>in homes across Charlotte.</em>"
+          />
+          <div className="work-grid">
+            {PROJECTS_PREVIEW.map((p, i) => (
+              <div key={p.id} className={i === 0 ? 'work-card is-wide' : 'work-card'} style={{ cursor: 'default' }}>
+                <div className="img-wrap">
+                  <ImageSlot caption="" src={p.img} position={p.position} />
+                </div>
+                <div className="gallery-meta">
+                  <span className="loc">{p.location} · {p.type}</span>
+                  <h3>{p.title}</h3>
+                  <div className="details">{p.details}</div>
+                  <blockquote>"{p.quote}"</blockquote>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ DIFFERENTIATORS ============ */}
+      <section className="section">
+        <div className="container--wide">
+          <div className="g2-head-image g2-head-image--equal" style={{ marginBottom: 80 }}>
+            <SectionHeader
+              inGrid
+              eyebrow="What Sets Us Apart"
+              title="Four commitments we make on<br/><em>every single project.</em>"
+              body="These are not values on a wall. They are the specific things we do differently, and they are why 712 Charlotte homeowners have trusted us with their homes."
+            />
+            <ImageSlot
+              src="./bath-freestanding-tub.jpg"
+              caption=""
+              style={{ width: '100%', aspectRatio: '4 / 3' }}
+              position="center 30%"
+            />
+          </div>
+          <div className="diff-grid">
+            <div className="diff-cell">
+              <div className="num">01</div>
+              <h3>The Promise — <em>A fixed price you can hold us to.</em></h3>
+              <p>The number in your proposal is the number on your final invoice. We plan every line item before we start, so the final number is real and precise from day one. In 11 years and 712 projects, not one client has received a final invoice that surprised them. That is not a claim. It is a record.</p>
+            </div>
+            <div className="diff-cell">
+              <div className="num">02</div>
+              <h3>The Team — <em>Our crew. Start to finish.</em></h3>
+              <p>Every person who works in your home is part of our team. They are background-checked, trained by us, and accountable to us through the life of your project. You will never walk into your home and find a crew you have never met. Your dedicated project manager is reachable by phone throughout the entire build.</p>
+            </div>
+            <div className="diff-cell">
+              <div className="num">03</div>
+              <h3>The Protection — <em>Lien releases at every milestone.</em></h3>
+              <p>At every payment milestone you receive a lien release, which protects your home and your investment from any supplier or subcontractor claim. Almost no one in this industry provides this automatically. We do it because it is the right way to protect the people who trust us with their homes.</p>
+            </div>
+            <div className="diff-cell">
+              <div className="num">04</div>
+              <h3>The Standard — <em>The job is not done until you say so.</em></h3>
+              <p>Our final walkthrough is not a formality. We walk the finished project with you, room by room, until every detail meets the standard we agreed on at the beginning. Not until we think it looks right, but until you are proud to show it to the people you love.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ PROCESS ============ */}
+      <section id="section-process" className="section section--inverse">
+        <div className="container--wide">
+          <div className="g2-head-image g2-head-image--wide-narrow" style={{ marginBottom: 80 }}>
+            <div style={{ maxWidth: 760 }}>
+              <Eyebrow inverse>The Journey</Eyebrow>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(34px, 5vw, 64px)', lineHeight: 1.25, letterSpacing: '-0.015em', margin: '18px 0 0', color: 'var(--fg-inverse)' }}>
+                A clear path from your first call<br/>
+                <em style={{ color: 'var(--c-brass-300)' }}>to the home you've been picturing.</em>
+              </h2>
+              <p style={{ marginTop: 32, color: 'rgba(255,255,255,0.7)', fontSize: 18, lineHeight: 1.65, maxWidth: '54ch' }}>
+                Five clear steps. Every decision locked before it matters. No surprises at any stage of the build.
+              </p>
+            </div>
+            <div>
+              <ImageSlot
+                src="./kitchen-reeded-glass.jpg"
+                caption=""
+                style={{ width: '100%', aspectRatio: '4 / 3' }}
+              />
+            </div>
+          </div>
+
+          <div className="g5-process">
+            {[
+              { num: 'I',   title: 'We Come to You',           body: 'Free, no-pressure in-home consultation. We listen, walk every space, and ask the questions most contractors skip.' },
+              { num: 'II',  title: 'We Give You the Real Number', body: 'A fixed-price proposal with every line item written out. You know the final number before you sign anything.' },
+              { num: 'III', title: 'We Lock Everything In',     body: 'Every material and selection made with your project manager and locked before demolition begins.' },
+              { num: 'IV',  title: 'We Build It',                body: 'Our team shows up on schedule. Weekly photo updates. Your PM answers every call. Lien releases at each milestone.' },
+              { num: 'V',   title: 'We Walk It With You',        body: 'Final walkthrough together until every detail is right. Then we hand you the keys. That is when we call it done.' },
+            ].map((p, i) => (
+              <div key={p.num} className="ph">
+                <div style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 56, color: 'var(--c-brass-300)', lineHeight: 1, marginBottom: 24 }}>{p.num}</div>
+                <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 22, lineHeight: 1.35, margin: '0 0 12px', color: 'var(--fg-inverse)' }}>{p.title}</h4>
+                <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.65)', margin: 0 }}>{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ REVIEWS ============ */}
+      <section id="section-reviews" className="section">
+        <div className="container--wide">
+          <SectionHeader
+            eyebrow="From Our Clients"
+            title="Heard directly from Charlotte homeowners<br/><em>who trusted us with their homes.</em>"
+          />
+          <div className="review-grid">
+            <div className="review-card">
+              <div className="stars">★★★★★</div>
+              <blockquote>"We had been burned before. We had gotten bids all over the map. These were the first contractors who gave us a number and actually meant it. Finished two weeks early. Not a single surprise."</blockquote>
+              <span className="who">M. and J. B. · Mooresville, NC</span>
+            </div>
+            <div className="review-card">
+              <div className="stars">★★★★★</div>
+              <blockquote>"I have renovated three homes across two states. This was the first time I did not spend a single night lying awake wondering what was happening to my kitchen. They ran it like clockwork."</blockquote>
+              <span className="who">L. H. · Cornelius, NC</span>
+            </div>
+            <div className="review-card">
+              <div className="stars">★★★★★</div>
+              <blockquote>"The craftsmanship is exceptional. The grout lines are perfect and the cabinetry is flawless. But what I remember most is that they answered the phone every single time I called."</blockquote>
+              <span className="who">T. and M. R. · Huntersville, NC</span>
+            </div>
+          </div>
+
+          <div className="review-trust">
+            {[
+              ['Google', '4.9'],
+              ['Houzz', '4.9'],
+              ['HomeAdvisor', '4.9'],
+              ['BBB', 'A+'],
+            ].map(([name, val]) => (
+              <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+                <span style={{ fontFamily: 'var(--font-text)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-3)' }}>{name}</span>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--fg-1)' }}>{val}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ MATERIALS ============ */}
+      <section className="section section--linen">
+        <div className="container--wide">
+          <div className="g2-narrow-wide">
+            <div>
+              <Eyebrow>What We Build With</Eyebrow>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(30px, 4.5vw, 56px)', lineHeight: 1.3, letterSpacing: '-0.015em', margin: '18px 0 28px' }}>
+                We build with surfaces that look right in fifteen years, <em style={{ color: 'var(--accent-ink)' }}>not just today.</em>
+              </h2>
+              <p style={{ color: 'var(--fg-2)', fontSize: 17, lineHeight: 1.7, margin: 0, maxWidth: '44ch' }}>
+                Every material selection is intentional. We specify premium materials not because they are the most expensive option, but because they are the right one for how the space ages, performs, and makes you feel every morning.
+              </p>
+              <div style={{ marginTop: 36 }}>
+                <ImageSlot src="./kitchen-reeded-glass.jpg" caption="" style={{ aspectRatio: '4 / 3', width: '100%' }} />
+              </div>
+            </div>
+            <div className="materials-grid">
+              {[
+                ['White Oak Cabinetry', 'Custom-built, not stock. The grain stays beautiful for decades and resists warping and fading in ways that painted MDF simply cannot.'],
+                ['Quartzite and Quartz Countertops', 'Brazilian quartzite for waterfall islands. Engineered quartz for perimeter runs. Both handle daily use without staining or etching over time.'],
+                ['Large-Format Porcelain and Custom Tile', 'Fewer grout lines, cleaner surfaces, dramatically more elegant. Available in formats up to 48 by 48 inches for bathrooms and wet rooms.'],
+                ['Engineered Hardwood', 'Dimensionally stable in Carolina humidity. Real wood surface with the same visual warmth and a far longer life expectancy than solid in this climate.'],
+              ].map(([t, b]) => (
+                <div className="material" key={t}>
+                  <h4><span className="marker"></span>{t}</h4>
+                  <p>{b}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ OFFER ============ */}
+      <section className="section">
+        <div className="container--wide">
+          <div className="g2-wide-narrow">
+            <div>
+              <Eyebrow>A Simple Invitation</Eyebrow>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(34px, 5vw, 64px)', lineHeight: 1.25, letterSpacing: '-0.015em', margin: '20px 0 28px', maxWidth: '14ch' }}>
+                We want to make the first step <em style={{ color: 'var(--accent-ink)' }}>easy.</em>
+              </h2>
+              <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--fg-2)', maxWidth: '52ch', margin: 0 }}>
+                Schedule a free consultation and we come to your home, listen carefully, and walk every space with you. There is no obligation and no rush to start the project. Just an honest conversation about what is possible and what it will cost. Bring your questions, your concerns, and any past contractor stories. We have heard them all and we build our process around making sure none of them repeat.
+              </p>
+              <div className="cta-row" style={{ marginTop: 40 }}>
+                <a href="tel:+17047000000" className="btn btn--primary" style={{ textDecoration: 'none' }}>
+                  <span>Call (704) 700-0000</span>
+                </a>
+                <Button variant="ghost" onClick={() => onNav('contact')}>Schedule Online</Button>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-3)', letterSpacing: '0.06em' }}>Free · No obligation</span>
+              </div>
+            </div>
+
+            <div className="offer-box">
+              <Eyebrow inverse>This season only · New clients</Eyebrow>
+              <div style={{ marginTop: 18 }}>
+                <div className="price"><em>$</em>1,475</div>
+                <span className="price-sub">Off your kitchen or bath</span>
+              </div>
+              <ul>
+                <li><span><strong>Off the fixed-price contract.</strong> Not a rebate or a coupon. A real reduction on the final number, written into your contract before you sign.</span></li>
+                <li><span><strong>No asterisk, no hidden exclusion.</strong> If you book a consultation this season, it applies to your project. That is all there is to it.</span></li>
+                <li><span><strong>Financing available</strong> for qualified homeowners, with flexible payment plans so you can move forward on your timeline.</span></li>
+                <li><span><strong>Lien releases at every milestone</strong> protect your home and your investment from the first payment to the last.</span></li>
+                <li><span><strong>NC Licensed · Fully Insured · BBB A+.</strong> Everything independently verified, nothing self-reported.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ FAQ ============ */}
+      <section id="section-faq" className="section section--linen">
+        <div className="container--wide">
+          <div className="g2-faq">
+            <div>
+              <Eyebrow>Good Questions</Eyebrow>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(30px, 4.5vw, 56px)', lineHeight: 1.3, letterSpacing: '-0.015em', margin: '18px 0 0', maxWidth: '14ch' }}>
+                Straight answers to the questions <em style={{ color: 'var(--accent-ink)' }}>we hear most.</em>
+              </h2>
+              <p style={{ marginTop: 24, color: 'var(--fg-2)', fontSize: 16, lineHeight: 1.7, maxWidth: '36ch' }}>
+                Still have something on your mind? Bring it to the consultation. We have heard most of it before.
+              </p>
+            </div>
+            <div className="faq-list">
+              {[
+                { marker: '01', q: 'How long does a kitchen remodel take?',
+                  a: 'Most kitchen projects run 10 to 14 weeks from demolition to final walkthrough. We build your timeline before we start and include realistic contingency at every stage. We would rather tell you 12 weeks and finish in 10 than tell you 8 weeks and finish in 14. The second version protects our schedule. The first version protects yours.' },
+                { marker: '02', q: 'Do you use subcontractors?',
+                  a: 'For licensed specialty work such as electrical, plumbing, and HVAC, we work with a consistent group of vetted local tradespeople we have used for years. They are not someone we called last week. Your project manager is on-site and accountable for every person who enters your home. You will never arrive to find an unfamiliar crew working without your knowledge.' },
+                { marker: '03', q: 'What if I do not know exactly what I want yet?',
+                  a: 'That is exactly what the consultation is for. You do not need a Pinterest board, a floor plan, or a single firm decision before we meet. You need to know you are ready to move toward the home you have been picturing. Your dedicated project manager will guide every selection from the first meeting through to the final material lock before demolition begins.' },
+                { marker: '04', q: 'What happens if something unexpected is found behind the walls?',
+                  a: 'If demolition reveals something that was not visible during planning, we document it immediately with photos and walk you through your options before doing anything further. If it affects scope, the contract is revised with your explicit approval. You are never billed for something you did not agree to in advance. This is one of the reasons our proposals are so detailed before we start.' },
+                { marker: '05', q: 'How does the $1,475 offer actually work?',
+                  a: 'It comes directly off the fixed-price contract. For any new client who schedules a consultation this season and moves forward with a kitchen or bathroom project, we reduce the contract total by $1,475. There is no fine print designed to exclude your project. It is a real reduction on a real number, and we offer it because we want the first step to be easy.' },
+              ].map((f, i) => (
+                <FaqItem key={f.marker} {...f} open={openFaq === i} onToggle={() => toggle(i)} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ FINAL CTA ============ */}
+      <section style={{ position: 'relative', padding: 'clamp(80px, 14vw, 160px) 0', overflow: 'hidden', background: 'var(--c-midnight)', color: 'var(--fg-inverse)' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'url("./kitchen-dark-gloss.jpg") center/cover', opacity: 0.45 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(22,26,33,0.92) 0%, rgba(22,26,33,0.72) 50%, rgba(22,26,33,0.55) 100%)' }} />
+        <div className="container--wide" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ maxWidth: 720 }}>
+            <Eyebrow inverse>You have been thinking about this long enough.</Eyebrow>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(48px, 6vw, 88px)', lineHeight: 1.4, letterSpacing: '-0.015em', margin: '24px 0 0', color: 'var(--fg-inverse)' }}>
+              One conversation <em style={{ color: 'var(--c-brass-300)' }}>changes everything.</em>
+            </h2>
+            <p style={{ marginTop: 32, fontSize: 19, lineHeight: 1.7, color: 'rgba(255,255,255,0.85)', maxWidth: '52ch' }}>
+              We come to your home, we listen, and we show you exactly what it costs to build what you have been imagining. No pressure. No pitch. Just clarity and a team you will finally feel good about.
+            </p>
+            <div className="cta-row" style={{ marginTop: 48 }}>
+              <a href="tel:+17047000000" className="btn btn--primary" style={{ background: 'var(--c-bone)', color: 'var(--c-ink)', textDecoration: 'none' }}>
+                <span>Call (704) 700-0000</span>
+              </a>
+              <Button variant="ghost-inverse" onClick={() => onNav('contact')}>Schedule Online</Button>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.06em' }}>Free · No obligation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+window.Home = Home;
+window.PROJECTS_PREVIEW = PROJECTS_PREVIEW;
+  </script>
+  <script type="text/babel">
+// Example Remodeling — Book Consultation
+
+function Contact() {
+  const [submitted, setSubmitted] = React.useState(false);
+  const [form, setForm] = React.useState({
+    name: '', email: '', phone: '', address: '', scope: 'Kitchen',
+    timeline: 'Within 6 months', notes: '',
+  });
+  const set = (k) => (v) => setForm(f => ({ ...f, [k]: v }));
+  const submit = (e) => { e?.preventDefault?.(); setSubmitted(true); };
+
+  return (
+    <section style={{ paddingTop: 140, paddingBottom: 160 }}>
+      <div className="container--wide">
+        <div className="g2-narrow-wide">
+
+          <div>
+            <Eyebrow>Book Consultation</Eyebrow>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(48px, 5.5vw, 80px)', lineHeight: 1.3, letterSpacing: '-0.015em', margin: '20px 0 32px', maxWidth: '16ch' }}>
+              One conversation <em style={{ color: 'var(--accent-ink)' }}>changes everything.</em>
+            </h1>
+            <p style={{ fontSize: 18, lineHeight: 1.7, color: 'var(--fg-2)', maxWidth: '46ch', margin: 0 }}>
+              We come to your home, we listen, and we walk every space with you. There is no obligation, no rush, and no charge. Just an honest conversation about what is possible and what it will cost.
+            </p>
+
+            <div style={{ marginTop: 48, padding: '32px 0', borderTop: '1px solid var(--line-soft)', borderBottom: '1px solid var(--line-soft)' }}>
+              <Eyebrow>Or call directly</Eyebrow>
+              <a href="tel:+17047000000" style={{ display: 'block', marginTop: 12, fontFamily: 'var(--font-display)', fontSize: 48, lineHeight: 1.35, color: 'var(--fg-1)', textDecoration: 'none', letterSpacing: '-0.01em' }}>
+                (704) 700-0000
+              </a>
+              <p style={{ marginTop: 12, fontSize: 14, color: 'var(--fg-3)', lineHeight: 1.6 }}>
+                Mon–Fri 8 AM – 6 PM<br/>
+                Saturday by Appointment
+              </p>
+            </div>
+
+            <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div style={{ display: 'flex', gap: 18, alignItems: 'baseline' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-3)', letterSpacing: '0.06em', width: 80 }}>SERVES</span>
+                <span style={{ fontSize: 14, color: 'var(--fg-2)' }}>Charlotte · Lake Norman · Cornelius · Davidson · Mooresville · Huntersville · Concord · Belmont</span>
+              </div>
+              <div style={{ display: 'flex', gap: 18, alignItems: 'baseline' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-3)', letterSpacing: '0.06em', width: 80 }}>EMAIL</span>
+                <a href="mailto:info@example.com" style={{ fontSize: 14, color: 'var(--fg-1)' }}>info@example.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            {!submitted ? (
+              <form onSubmit={submit} style={{ background: 'var(--bg-surface)', border: '1px solid var(--line-soft)', padding: '48px 56px' }}>
+                <div style={{ marginBottom: 28 }}>
+                  <Eyebrow>Free · No obligation</Eyebrow>
+                </div>
+                <div className="form-grid">
+                  <Field label="Name"  value={form.name}  onChange={set('name')}  placeholder="" />
+                  <Field label="Phone" value={form.phone} onChange={set('phone')} placeholder="" />
+                  <Field label="Email" value={form.email} onChange={set('email')} type="email" placeholder="" />
+                  <Field label="Address" value={form.address} onChange={set('address')} placeholder="" />
+                  <Field label="Project Type" value={form.scope} onChange={set('scope')} options={['Kitchen','Bathroom','Tile','Flooring','Painting','Carpentry','Decks & Fences','Multiple']} />
+                  <Field label="Timeline" value={form.timeline} onChange={set('timeline')} options={['Within 3 months','Within 6 months','Within 12 months','Exploratory']} />
+                </div>
+                <div style={{ marginTop: 8 }}>
+                  <Field label="Tell us about your project" value={form.notes} onChange={set('notes')} textarea placeholder="" />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 16, gap: 24, flexWrap: 'wrap' }}>
+                  <p style={{ margin: 0, fontSize: 12, color: 'var(--fg-3)', maxWidth: '36ch', lineHeight: 1.6 }}>
+                    A project manager will call you within one business day. Every inquiry is read by our team, not an assistant.
+                  </p>
+                  <Button arrow>Book Consultation</Button>
+                </div>
+              </form>
+            ) : (
+              <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--line-soft)', padding: '64px 56px' }}>
+                <Eyebrow>Received</Eyebrow>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 56, lineHeight: 1.35, letterSpacing: '-0.015em', margin: '20px 0 24px', maxWidth: '20ch' }}>
+                  Thank you, <em style={{ color: 'var(--accent-ink)' }}>{form.name?.split(' ')[0] || 'we have your note'}.</em>
+                </h2>
+                <p style={{ color: 'var(--fg-2)', fontSize: 17, lineHeight: 1.7, margin: 0, maxWidth: '52ch' }}>
+                  A project manager will call you within one business day to schedule a free in-home consultation. If something is more urgent, the direct line is <strong>(704) 700-0000</strong>.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+window.Contact = Contact;
+  </script>
+  <script type="text/babel">
+// Example LKN — app router (single-page homepage + contact)
+
+const { useState } = React;
+
+const SECTION_IDS = ['work', 'process', 'reviews', 'faq'];
+
+function scrollToId(id) {
+  const el = document.getElementById('section-' + id);
+  if (!el) return;
+  const target = el.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - 72;
+  // Explicit 'auto' (instant) — reliable everywhere. Native 'smooth' is a no-op in some preview iframes.
+  window.scrollTo({ top: target, left: 0, behavior: 'auto' });
+}
+
+function App() {
+  const [screen, setScreen] = useState('home');
+  const [project, setProject] = useState(null);
+
+  const nav = (id) => {
+    // In-page section links — scroll the homepage instead of routing.
+    if (SECTION_IDS.includes(id)) {
+      if (screen !== 'home') {
+        setScreen('home');
+        setTimeout(() => scrollToId(id), 120);
+      } else {
+        scrollToId(id);
+      }
+      return;
+    }
+    setScreen(id);
+    window.scrollTo(0, 0);
+  };
+
+  const openProject = (p) => { setProject(p); };
+
+  let content;
+  switch (screen) {
+    case 'home':    content = <Home onNav={nav} onOpenProject={openProject} />; break;
+    case 'contact': content = <Contact />; break;
+    default:        content = <Home onNav={nav} onOpenProject={openProject} />;
+  }
+
+  const navCurrent = screen;
+
+  return (
+    <React.Fragment>
+      <Nav current={navCurrent} onNav={nav} />
+      <main>{content}</main>
+      <Footer onNav={nav} />
+    </React.Fragment>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+  </script>
+</body>
+</html>
